@@ -3,15 +3,38 @@ import React, {useState, useEffect} from "react";
 import { getDatabase, ref, onValue ,set} from "firebase/database";
 import styles from './App.module.css'
 import music from './mp3/sound.mp3'
+import music1 from './mp3/sound1.mp3'
+import music2 from './mp3/sound2.mp3'
+import music3 from './mp3/sound3.mp3'
+import music4 from './mp3/sound4.mp3'
+
+
 import {doc,getDocs,setDoc,collection} from "firebase/firestore"
 
 function App() {
   const [count, setCount] = useState();
-  let au = new Audio(music)
+  let au = new Audio(music);
+  let au1 = new Audio(music1);
+  let au2 = new Audio(music2);
+  let au3 = new Audio(music3);
+  let au4 = new Audio(music4);
+  
   
   const refs = collection(db,"users")
   function start(){
-    au.play();
+    var random = Math.floor(Math.random()*5)
+
+    if(random == 0){
+      au.play();
+    }else if(random == 1){
+      au1.play();
+    }else if(random == 2){
+      au2.play();
+    }else if(random == 3){
+      au3.play();
+    }else if(random == 4){
+      au4.play();
+    }
   }
   const getUsers = async () =>{
     const data = await getDocs(refs);
